@@ -10,6 +10,8 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = favicon_link_tag 'logo.png'
+
   %body{:lang => I18n.locale,
     :class => [controller.controller_name, controller.action_name, yield(:body_class)]}
     %header
@@ -19,22 +21,6 @@
       - else
         = image_tag 'logo.png'
       #user_nav
-        #locale_select
-          - if I18n.available_locales.size > 1
-            - I18n.available_locales.each do |lang|
-              - if lang == I18n.locale
-                .language.current
-                  = lang.to_s.upcase
-              - elsif request.get?
-                - locale = I18n.locale.to_s
-                - lang = lang.to_s
-                - path = request.fullpath
-                - path = path.index(locale) == 1 ? path.sub(locale, lang) : "/#{lang}#{path}"
-                .language.other_language
-                  = link_to lang.to_s.upcase, path
-              - else
-                .language.other_language
-                  = lang.to_s.upcase
 
     #container
       -# = render "layouts/admin_menu"
