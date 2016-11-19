@@ -15,6 +15,7 @@ module Bowling
     config.sass.preferred_syntax = :sass
     config.generators do |g|
       g.cancan :current_ability
+      g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
   end
 end

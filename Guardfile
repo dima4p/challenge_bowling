@@ -26,7 +26,8 @@
 
 require 'active_support/inflector'
 
-guard :rspec, cmd: "bundle exec rspec" do
+guard :rspec, cmd: "bundle exec rspec",
+    all_after_pass: false, all_on_start: false, failed_mode: :focus do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 
@@ -56,7 +57,6 @@ guard :rspec, cmd: "bundle exec rspec" do
   end
 
   # Rails config changes
-  watch(rails.spec_helper)     { rspec.spec_dir }
   watch(rails.routes)          { "#{rspec.spec_dir}/routing" }
   watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
 

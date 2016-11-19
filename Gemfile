@@ -64,6 +64,7 @@ group :development, :test do
     end
   end
 
+  gem 'rails-controller-testing'
   gem "rspec-rails"
   gem 'guard-bundler', require: false
   gem 'guard-rspec'
