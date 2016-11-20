@@ -1,0 +1,31 @@
+---
+en:
+  activerecord:
+    models:
+      game: "Game"
+    attributes:
+      game: 
+        state: "State"
+        created_at: "Started"
+  helpers:
+    submit:
+      game:
+        create: "Create game"
+        update: "Update game"
+  games:
+    edit:
+      title: "Editing of the game"
+    form:
+      game: "Game"
+    index:
+      confirm: "Are you sure you want to delete the game?"
+      empty: "No games found"
+      new_game: "Add a new game"
+      title: "Listing of games"
+    new:
+      title: "Adding a new game"
+    show:
+      title: "Game details"
+    was_created: "Game was successfully added"
+    was_deleted: "Game was successfully deleted"
+    was_updated: "Game was successfully updated"

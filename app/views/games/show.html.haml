@@ -1,0 +1,13 @@
+- title t('.title')
+
+%p.nav
+  - if can? :index, Game
+    = link_to t('back'), games_path, class: 'index'
+  - if can? :edit, @game
+    = link_to t('edit'), edit_game_path(@game), class: 'edit'
+
+%dl
+  %dt= Game.human_attribute_name :created_at
+  %dd= @game.created_at
+  %dt= Game.human_attribute_name :state
+  %dd= @game.state

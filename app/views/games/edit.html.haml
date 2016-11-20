@@ -1,0 +1,9 @@
+- title t('.title')
+
+%p.nav
+  - if can? :index, Game
+    = link_to t('back'), games_path, class: 'index'
+  - if can? :show, @game
+    = link_to t('show'), @game, class: 'show'
+
+= render 'form', game: @game
