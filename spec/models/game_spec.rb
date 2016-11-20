@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: games
+#
+#  created_at :datetime         not null
+#  id         :integer          not null, primary key
+#  state      :string
+#  updated_at :datetime         not null
+#
+
 require 'rails_helper'
 
 describe Game, type: :model do
@@ -6,6 +16,7 @@ describe Game, type: :model do
 
   describe 'validations' do
     it { should be_valid }
+    it { should have_many :frames }
   end   # validations
 
   describe 'class methods' do

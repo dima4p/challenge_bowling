@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119101914) do
+ActiveRecord::Schema.define(version: 20161120070031) do
+
+  create_table "frames", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "number"
+    t.integer  "ball1"
+    t.integer  "ball2"
+    t.integer  "ball3"
+    t.integer  "score",       default: 0
+    t.integer  "lack",        default: 0
+    t.integer  "previous_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["game_id"], name: "index_frames_on_game_id"
+    t.index ["previous_id"], name: "index_frames_on_previous_id"
+  end
 
   create_table "games", force: :cascade do |t|
     t.string   "state"

@@ -12,6 +12,8 @@
 #
 class Game < ApplicationRecord
 
+  has_many :frames
+
   scope :ordered, -> { order(created_at: :desc) }
 
 end

@@ -1,0 +1,2 @@
+PINS = 10
+FRAMES = 10
