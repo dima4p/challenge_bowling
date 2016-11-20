@@ -10,7 +10,7 @@ en:
   helpers:
     submit:
       game:
-        create: "Create game"
+        create: "Start game"
         update: "Update game"
   games:
     edit:
@@ -20,12 +20,12 @@ en:
     index:
       confirm: "Are you sure you want to delete the game?"
       empty: "No games found"
-      new_game: "Add a new game"
+      new_game: "Start a new game"
       title: "Listing of games"
     new:
-      title: "Adding a new game"
+      title: "Starting a new game"
     show:
-      title: "Game details"
-    was_created: "Game was successfully added"
+      title: "Game status"
+    was_created: "Game was successfully started"
     was_deleted: "Game was successfully deleted"
     was_updated: "Game was successfully updated"
