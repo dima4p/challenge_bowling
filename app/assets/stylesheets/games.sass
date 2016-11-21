@@ -23,12 +23,19 @@ body.games.show
           border-left: none
           border-right: 1px solid $frame_border
           left: 80px
-
+      &.strike,&.spare
+        .ball2
+          .symbol
+            font-size: 28px
+            position: absolute
+            top: -5px
       .ball1,.ball2,.ball3
         border-bottom: 1px solid $frame_border
         border-left: 1px solid $frame_border
+        font-size: 18px
         height: 24px
         position: absolute
+        text-align: center
         width: 24px
       .ball1
         left: 32px

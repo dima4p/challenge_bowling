@@ -4,10 +4,18 @@
 - classes << :done   if frame.done?
 - classes << :last   if frame.last?
 .frame{class: classes}<
-  .ball1
-    = frame.ball1
+  - unless frame.strike?
+    .ball1
+      = frame.ball1
   .ball2
-    = frame.ball2
+    - if frame.strike?
+      .symbol
+        X
+    - elsif frame.spare?
+      .symbol
+        = "/"
+    - else
+      = frame.ball2
   - if frame.strike? or frame.spare?
     .ball3
       = frame.ball3
