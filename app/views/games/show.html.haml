@@ -12,7 +12,7 @@
   %dt= Game.human_attribute_name :created_at
   %dd= @game.created_at
   %dt= Game.human_attribute_name :state
-  %dd= @game.state
+  %dd{class: @game.state}= @game.state
 
 .frames<
   - @game.frames.each do |frame|

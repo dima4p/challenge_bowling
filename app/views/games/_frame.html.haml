@@ -4,21 +4,19 @@
 - classes << :done   if frame.done?
 - classes << :last   if frame.last?
 .frame{class: classes}<
-  - unless frame.strike?
+  - unless frame.strike? and not frame.last?
     .ball1
-      = frame.ball1
+      = render 'ball', frame: frame, strike: frame.strike?, pins: frame.ball1
   .ball2
-    - if frame.strike?
-      .symbol
-        X
-    - elsif frame.spare?
-      .symbol
-        = "/"
+    - if frame.last?
+      = render 'ball', frame: frame, strike: frame.ball2 == PINS,
+          spare: frame.spare?, pins: frame.ball2
     - else
-      = frame.ball2
+      = render 'ball', frame: frame, strike: frame.strike?, spare: frame.spare?,
+          pins: frame.ball2
   - if frame.strike? or frame.spare?
     .ball3
-      = frame.ball3
+      = render 'ball', frame: frame, strike: frame.ball3 == PINS, pins: frame.ball3
   .score
     - if frame.ball1
       = frame.score

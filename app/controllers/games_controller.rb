@@ -12,6 +12,8 @@
 #
 class GamesController < ApplicationController
 
+  protect_from_forgery except: :score
+
   load_resource except: [:score]
   before_action :find_current, only: [:score]
   authorize_resource

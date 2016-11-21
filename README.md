@@ -7,6 +7,7 @@ the request from the machine. So it has to be done
 * To add more players
 * To add more tracks
 * To replace ascii with pictures in Games#show
+* to add styles for #index and other enhasments ;-)
 
 ## The task
 

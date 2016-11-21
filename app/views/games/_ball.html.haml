@@ -1,0 +1,10 @@
+- strike = false unless defined? :strike
+- spare  = false unless defined? :spare
+- if strike
+  .symbol
+    X
+- elsif spare
+  .symbol
+    = "/"
+- else
+  = pins
