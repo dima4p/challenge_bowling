@@ -6,6 +6,7 @@ the request from the machine. So it has to be done
 * I've skipped creating specs for Ability, so they have to be written
 * To add more players
 * To add more tracks
+* To replace ascii with pictures in Games#show
 
 ## The task
 
