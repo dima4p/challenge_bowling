@@ -89,13 +89,13 @@ class Frame < ApplicationRecord
   def update_previous!(pins, stop = nil)
     return 0 unless previous
     increment = 0
+    increment += previous.send :update_previous!, pins, true unless stop
     if previous.lack > 0
       previous.lack -=1
-      previous.score += pins
+      previous.score += pins + increment
       increment += pins
       previous.save!
     end   # lack > 0
-    increment += previous.send :update_previous!, pins, true unless stop
     increment
   end
 end
