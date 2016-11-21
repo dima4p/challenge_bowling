@@ -1,13 +1,23 @@
 - title t('.title')
+- new_frame = Frame.new
 
-%p.nav
+.nav
   - if can? :index, Game
     = link_to t('back'), games_path, class: 'index'
-  - if can? :edit, @game
-    = link_to t('edit'), edit_game_path(@game), class: 'edit'
+  - if can? :cancel, @game
+    = button_to t('.cancel'), @game,
+        params: {game: {cancel: 1}}, method: :patch, class: 'edit'
 
 %dl
   %dt= Game.human_attribute_name :created_at
   %dd= @game.created_at
   %dt= Game.human_attribute_name :state
   %dd= @game.state
+
+.frames<
+  - @game.frames.each do |frame|
+    =render 'frame', frame: frame
+  - (FRAMES - @game.frames.size).times do |n|
+    =render 'frame', frame: new_frame
+  .game_score
+    = @game.score

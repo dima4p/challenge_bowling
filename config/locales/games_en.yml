@@ -5,8 +5,9 @@ en:
       game: "Game"
     attributes:
       game: 
-        state: "State"
         created_at: "Started"
+        score: "Score"
+        state: "State"
   helpers:
     submit:
       game:
@@ -25,7 +26,8 @@ en:
     new:
       title: "Starting a new game"
     show:
+      cancel: "Cancel the game"
       title: "Game status"
-    was_created: "Game was successfully started"
+    was_created: "Game was started"
     was_deleted: "Game was successfully deleted"
-    was_updated: "Game was successfully updated"
+    was_updated: "Game was cancelled"

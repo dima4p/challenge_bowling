@@ -1,0 +1,16 @@
+- classes = []
+- classes << :strike if frame.strike?
+- classes << :spare  if frame.spare?
+- classes << :done   if frame.done?
+- classes << :last   if frame.last?
+.frame{class: classes}<
+  .ball1
+    = frame.ball1
+  .ball2
+    = frame.ball2
+  - if frame.strike? or frame.spare?
+    .ball3
+      = frame.ball3
+  .score
+    - if frame.ball1
+      = frame.score

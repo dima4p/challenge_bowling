@@ -9,7 +9,7 @@
       %tr
         %th= Game.human_attribute_name :created_at
         %th= Game.human_attribute_name :state
-        %th{colspan: 3}= t 'actions'
+        %th{colspan: 2}= t 'actions'
 
     %tbody
       - @games.each do |game|
@@ -19,9 +19,6 @@
           %td.action
             - if can? :show, game
               = link_to t('show'), game, class: 'show'
-          %td.action
-            - if can? :edit, game
-              = link_to t('edit'), edit_game_path(game), class: 'edit'
           %td.action
             - if can? :destroy, game
               = link_to t('destroy'), game,

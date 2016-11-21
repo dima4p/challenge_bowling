@@ -101,6 +101,65 @@ describe GamesController, type: :controller do
     # end   # with invalid params
   end   # POST #create
 
+  describe "PUT #update" do
+    before :each do
+      allow(Game).to receive(:find).and_return game
+    end
+
+    it 'looks for the Game' do
+      expect(Game).to receive(:find).with('1').and_return game
+      put :update, params: {id: game.id, game: {cancel: '1'}},
+          session: valid_session
+    end
+
+    it 'sends :update! to the found game' do
+      expect_any_instance_of(Game).to receive(:cancel!)
+      put :update, params: {id: game.id, game: {cancel: '1'}},
+          session: valid_session
+    end
+
+    it 'returns :ok' do
+      put :update, params: {id: game.id, game: {cancel: '1'}},
+          session: valid_session
+      expect(response).to have_http_status :found
+    end
+  end   # PUT #update
+
+  describe "POST #score" do
+    before :each do
+      allow(Game).to receive(:current).and_return game
+    end
+
+    it 'looks for current Game' do
+      expect(Game).to receive(:current).and_return nil
+      post :score, params: {pins: '5', xhr: true},
+          session: valid_session
+    end
+
+    context 'when not found current Game' do
+      it 'returns :bad_request' do
+        expect(Game).to receive(:current).and_return nil
+        post :score, params: {pins: '5', xhr: true},
+            session: valid_session
+        expect(response).to have_http_status :bad_request
+      end
+    end   # when not found current Game
+
+    context 'when found current Game' do
+      it 'sends :score! to the found game' do
+        expect_any_instance_of(Game).to receive(:score!).with('5')
+        post :score, params: {pins: '5', xhr: true},
+            session: valid_session
+      end
+
+      it 'returns :ok' do
+        post :score, params: {pins: '5', xhr: true},
+            session: valid_session
+        expect(response).to have_http_status :ok
+      end
+    end   # when found current Game
+  end   # POST #score
+
   describe "DELETE #destroy" do
     it "destroys the requested game" do
       game

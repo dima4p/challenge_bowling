@@ -1,3 +1,53 @@
-// Place all the styles related to the Games controller here.
-// They will automatically be included in application.css.
-// You can use Sass here: http://sass-lang.com/
+@import colors
+
+$frames: 10
+
+body.games.show
+  form
+    display: inline-block
+  .frames
+    border: 2px solid $frame_border
+    height: 60px
+    margin: 20px auto
+    position: relative
+    width: #{80 * $frames + 1 + 80}px
+    .frame
+      border-right: 1px solid $frame_border
+      display: inline-block
+      height: 60px
+      position: relative
+      width: 79px
+      &:nth-of-type(#{$frames})
+        border-right: 2px solid $frame_border
+        .ball3
+          border-left: none
+          border-right: 1px solid $frame_border
+          left: 80px
+
+      .ball1,.ball2,.ball3
+        border-bottom: 1px solid $frame_border
+        border-left: 1px solid $frame_border
+        height: 24px
+        position: absolute
+        width: 24px
+      .ball1
+        left: 32px
+      .ball2,.ball3
+        left: 56px
+      .score
+        bottom: 0
+        font-size: 24px
+        height: 34px
+        position: absolute
+        text-align: center
+        vertical-align: center
+        width: 80px
+    .game_score
+      bottom: 0
+      font-size: 32px
+      height: 40px
+      position: absolute
+      right: 0px
+      text-align: center
+      width: 75px
+

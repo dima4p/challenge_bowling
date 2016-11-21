@@ -12,7 +12,11 @@
 #
 class GamesController < ApplicationController
 
-  load_and_authorize_resource except: :update
+  load_resource except: [:score]
+  before_action :find_current, only: [:score]
+  authorize_resource
+
+  layout false, only: :score
 
   # GET /games
   def index
@@ -40,16 +44,19 @@ class GamesController < ApplicationController
     end
   end
 
+  # POST /score/1
+  def score
+    return unless @game
+    @game.score! params[:pins]
+    head :ok
+  end
+
   # PATCH/PUT /games/1
   def update
+    @game.cancel!
     respond_to do |format|
-      if @game.update(game_params)
-        format.html { redirect_to @game, notice: t('games.was_updated') }
-        format.json { render :show, status: :ok, location: @game }
-      else
-        format.html { render :edit }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to games_path, notice: t('games.was_updated') }
+      format.json { render :show, status: :ok, location: @game }
     end
   end
 
@@ -65,17 +72,21 @@ class GamesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  # def set_game
-  #   @game = Game.find(params[:id])
-  # end
+  def find_current
+    @game = Game.current
+    head :bad_request unless @game
+    @game
+  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def game_params
     # The list to be filled later when Game starts taking more information
-    # list = [
-    # ]
-    # params.require(:game).permit(*list)
-    {}
+    if params[:action] == 'create'
+      {}
+    else
+      list = [ ]
+      list << :cancel if can? :cancel, @game
+      params.require(:game).permit(*list)
+    end
   end
 end

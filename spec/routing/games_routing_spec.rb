@@ -7,6 +7,10 @@ RSpec.describe GamesController, type: :routing do
       expect(:get => "/games").to route_to("games#index")
     end
 
+    it "routes to #index" do
+      expect(:post => "/score/5").to route_to("games#score", pins: '5')
+    end
+
     it "routes to #new" do
       expect(:get => "/games/new").to route_to("games#new")
     end
