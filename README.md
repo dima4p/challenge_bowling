@@ -3,6 +3,7 @@
 ## TODOs
 * I did not implement the check of pins reported assuming we can trust
 the request from the machine. So it has to be done
+* I've skipped creating specs for Ability, so they have to be written
 * To add more players
 * To add more tracks
 
